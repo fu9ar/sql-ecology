@@ -95,7 +95,7 @@ Whoops! Why didn't that work? SQL uses strict logical operators for these select
 
 > ### Challenge
 >
-> Write a query that 
+> Write a query that...
 
 
 Saving & Exporting queries
@@ -116,16 +116,15 @@ You will see additional 4 icons - "Previous query from the history", "Next query
 Building more complex queries
 -----------------------------
 
-Now, lets combine the above queries to get data for the 3 _Dipodomys_ species from
-the year 2000 on.  This time, let’s use IN as one way to make the query easier
-to understand.  It is equivalent to saying `WHERE (species_id = 'DM') OR (species_id
-= 'DO') OR (species_id = 'DS')`, but reads more neatly:
+Now, lets combine the above queries to get data for Mass and the surrounding states.  This time, 
+let’s use IN as one way to make the query easier to understand.  It is equivalent to 
+saying `WHERE (CHSI_State_Abbr = 'MA') OR (CHSI_State_Abbr = 'NH) ...`, but reads more neatly:
 
-    SELECT * FROM surveys WHERE (year >= 2000) AND (species_id IN ('DM', 'DO', 'DS'));
+    SELECT * FROM Demographics WHERE (Poverty >= 12) AND (CHSI_State_Abbr IN ('MA', 'NH', 'VT', 'NY', 'CN', 'RI'));
 
-    SELECT *
-    FROM surveys
-    WHERE (year >= 2000) AND (species_id IN ('DM', 'DO', 'DS'));
+    SELECT * FROM Demographics 
+    WHERE (Poverty >= 12) 
+    AND (CHSI_State_Abbr IN ('MA', 'NH', 'VT', 'NY', 'CN', 'RI'));
 
 We started with something simple, then added more clauses one by one, testing
 their effects as we went along.  For complex queries, this is a good strategy,
@@ -138,26 +137,24 @@ Sorting
 -------
 
 We can also sort the results of our queries by using ORDER BY.
-For simplicity, let’s go back to the species table and alphabetize it by taxa.
+For simplicity, let’s go back to the Demographics table and order it by Poverty rates.
 
-    SELECT * FROM species ORDER BY taxa ASC;
+    SELECT * FROM Demographics ORDER BY Poverty ASC;
 
 The keyword ASC tells us to order it in Ascending order.
 We could alternately use DESC to get descending order.
 
-    SELECT * FROM species ORDER BY taxa DESC;
+    SELECT * FROM Demographics ORDER BY Poverty DESC;
 
 ASC is the default.
 
 We can also sort on several fields at once.
-To truly be alphabetical, we might want to order by genus then species.
 
-    SELECT * FROM species ORDER BY genus ASC, species ASC;
+    SELECT * FROM Demographics ORDER BY Poverty ASC, Black ASC;
 
 > ### Challenge
 >
-> Write a query that returns year, species, and weight in kg from
-> the surveys table, sorted with the largest weights at the top.
+> Write a query that ...
 
 
 Order of execution

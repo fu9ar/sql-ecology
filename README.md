@@ -5,5 +5,5 @@ data. Please see our [contribution guidelines](CONTRIBUTING.md) for information
 on how to contribute updates, bug fixes, or other corrections.
 
 ## Maintainer
-Kevin Vilbig ([@fu9ar](https://github.com/fu9ar))
+Kevin Vilbig ([@fu9ar](https://github.com/fu9ar))  
 forked from Ethan White's ecology lesson ([@ethanwhite](https://github.com/ethanwhite/))

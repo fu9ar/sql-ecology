@@ -6,15 +6,13 @@ minutes: 30
 ---
 
 
-Let's start by using the **surveys** table.
-Here we have data on every individual that was captured at the site,
-including when they were captured, what plot they were captured on,
-their species ID, sex and weight in grams.
+Let's start by using the **Demographics** table.
+Here we have data on general demographics from every county in the United States.
 
-Let’s write an SQL query that selects only the year column from the surveys
+Let’s write an SQL query that selects only the Population_Size column from the Demographics
 table.
 
-    SELECT year FROM surveys;
+    SELECT Population_Size FROM Demographics;
 
 We have capitalized the words SELECT and FROM because they are SQL keywords.
 SQL is case insensitive, but it helps for readability – good style.
@@ -22,43 +20,44 @@ SQL is case insensitive, but it helps for readability – good style.
 If we want more information, we can just add a new column to the list of fields,
 right after SELECT:
 
-    SELECT year, month, day FROM surveys;
+    SELECT CHSI_State_Name, CHSI_County_Name, Population_Size FROM Demographics;
 
 Or we can select all of the columns in a table using the wildcard *
 
-    SELECT * FROM surveys;
+    SELECT * FROM Demographics;
 
 ### Unique values
 
-If we want only the unique values so that we can quickly see what species have
-been sampled we use ``DISTINCT``
+This isn't terribly useful on this dataset, but we can output a list of distinct values from a column using the SQL Keyword, ``DISTINCT``
 
-    SELECT DISTINCT species_id FROM surveys;
+    SELECT DISTINCT CHSI_State_Name FROM Demographics;
 
 If we select more than one column, then the distinct pairs of values are
-returned
+returned. Note that the Poverty measurements are percentages, not raw numbers.
 
-    SELECT DISTINCT year, species_id FROM surveys;
+    SELECT DISTINCT CHSI_State_Name, Poverty FROM Demographics;
+    
+Here, you can look at the bottom of the SQLite Manager window, in the status bar and you should see that this returns 2167 records compared to the 3141 returned from
+
+    SELECT * from Demographics;
 
 ### Calculated values
 
 We can also do calculations with the values in a query.
-For example, if we wanted to look at the mass of each individual
-on different dates, but we needed it in kg instead of g we would use
+For example, if we needed counts of the people living in Poverty in each County
 
-    SELECT year, month, day, weight/1000.0 from surveys;
+    SELECT CHSI_County_Name, Population_Size*Poverty/100 from Demographics;
 
-When we run the query, the expression `weight / 1000.0` is evaluated for each row
+When we run the query, the expression `Population_Size*Poverty/100` is evaluated for each row
 and appended to that row, in a new column.  Expressions can use any fields, any
 arithmetic operators (+ - * /) and a variety of built-in functions (). For
-example, we could round the values to make them easier to read.
+example, we could round the values to make them easier to read. While you may not need two decimal places when evaluating population demographics, I included it here to illustrate how the function arguments work.
 
-    SELECT plot_id, species_id, sex, weight, ROUND(weight / 1000.0, 2) FROM surveys;
+SELECT CHSI_County_Name, ROUND(Population_Size*Poverty/100, 2) from Demographics;
 
 > ## Challenge
 >
-> Write a query that returns The year, month, day, species_id and weight in mg
-
+> Write a query that ...
 Filtering
 ---------
 

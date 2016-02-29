@@ -58,6 +58,7 @@ SELECT CHSI_County_Name, ROUND(Population_Size*Poverty/100, 2) from Demographics
 > ## Challenge
 >
 > Write a query that ...
+
 Filtering
 ---------
 

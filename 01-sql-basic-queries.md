@@ -87,8 +87,9 @@ If we wanted to get data for Mass and neighboring states
 
     SELECT * FROM surveys WHERE (CHSI_State_Abbr = 'MA') AND (CHSI_State_Abbr = 'NH') AND (CHSI_State_Abbr = 'VT')
     AND (CHSI_State_Abbr = 'NY') AND (CHSI_State_Abbr = 'CN') AND (CHSI_State_Abbr = 'RI');
-    
-    
+
+Whoops! Why didn't that work? SQL uses strict logical operators for these selections.
+
     SELECT * FROM Demographics WHERE (CHSI_State_Abbr = 'MA') OR (CHSI_State_Abbr = 'NH') OR (CHSI_State_Abbr = 'VT') 
     OR (CHSI_State_Abbr = 'NY') OR (CHSI_State_Abbr = 'CN') OR (CHSI_State_Abbr = 'RI');
 

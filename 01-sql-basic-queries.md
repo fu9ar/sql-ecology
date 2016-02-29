@@ -63,36 +63,38 @@ Filtering
 ---------
 
 Databases can also filter data – selecting only the data meeting certain
-criteria.  For example, let’s say we only want data for the species _Dipodomys
-merriami_, which has a species code of DM.  We need to add a WHERE clause to our
+criteria.  For example, let’s say we only want the data for Massachusetts.  We need to add a WHERE clause to our
 query:
 
-    SELECT * FROM surveys WHERE species_id='DM';
+    SELECT * FROM Demographics WHERE CHSI_State_Abbr='MA';
 
 We can do the same thing with numbers.
-Here, we only want the data since 2000:
+Here, we only want the data for counties with more than 20% Poverty:
 
-    SELECT * FROM surveys WHERE year >= 2000;
+    SELECT * FROM Demographics WHERE Poverty >= 20;
 
 We can use more sophisticated conditions by combining tests with AND and OR.
 For example, suppose we want the data on _Dipodomys merriami_ starting in the year
 2000:
 
-    SELECT * FROM surveys WHERE (year >= 2000) AND (species_id = 'DM');
+    SELECT * FROM Demographics WHERE (Poverty >= 20) AND (CHSI_State_Abbr = 'MA');
 
 Note that the parentheses aren’t needed, but again, they help with readability.
 They also ensure that the computer combines AND and OR in the way that we
 intend.
 
-If we wanted to get data for any of the _Dipodomys_ species,
-which have species codes DM, DO, and DS we could combine the tests using OR:
+If we wanted to get data for Mass and neighboring states
 
-    SELECT * FROM surveys WHERE (species_id = 'DM') OR (species_id = 'DO') OR (species_id = 'DS');
+    SELECT * FROM surveys WHERE (CHSI_State_Abbr = 'MA') AND (CHSI_State_Abbr = 'NH') AND (CHSI_State_Abbr = 'VT')
+    AND (CHSI_State_Abbr = 'NY') AND (CHSI_State_Abbr = 'CN') AND (CHSI_State_Abbr = 'RI');
+    
+    
+    SELECT * FROM Demographics WHERE (CHSI_State_Abbr = 'MA') OR (CHSI_State_Abbr = 'NH') OR (CHSI_State_Abbr = 'VT') 
+    OR (CHSI_State_Abbr = 'NY') OR (CHSI_State_Abbr = 'CN') OR (CHSI_State_Abbr = 'RI');
 
 > ### Challenge
 >
-> Write a query that returns the day, month, year, species_id, and
-> weight (in kg) for individuals caught on Plot 1 that weigh more than 75 g
+> Write a query that 
 
 
 Saving & Exporting queries

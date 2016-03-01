@@ -17,20 +17,20 @@ tables using the word `ON`.  What we want is to join the data with the same
 species codes.
 
     SELECT *
-    FROM surveys JOIN species
-    ON surveys.species_id = species.species_id
+    FROM Demographics JOIN MeasuresofBirthAndDeath
+    ON Demographics.CHSI_County_Name = MeasuresofBirthandDeath.CHSI_County_Name
 
 `ON` is like `WHERE`, it filters things out according to a test condition.  We use
 the `table.colname` format to tell the manager what column in which table we are
 referring to.
 
 Alternatively, we can use the word `USING`, as a short-hand.  In this case we are 
-telling the manager that we want to combine `surveys` with `species` and that 
-the common column is `species_id`.
+telling the manager that we want to combine `Demographics` with `MeasuresofBirthandDeath` and that 
+the common column is `CHSI_County_Name`.
 
     SELECT *
-    FROM surveys JOIN species
-    USING (species_id)
+    FROM Demographics JOIN MeasuresofBirthandDeath
+    USING (CHSI_County_Name)
 
 
 We often won't want all of the fields from both tables, so anywhere we would

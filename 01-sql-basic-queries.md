@@ -53,18 +53,19 @@ and appended to that row, in a new column.  Expressions can use any fields, any
 arithmetic operators (+ - * /) and a variety of built-in functions (). For
 example, we could round the values to make them easier to read. While you may not need two decimal places when evaluating population demographics, I included it here to illustrate how the function arguments work.
 
-SELECT CHSI_County_Name, ROUND(Population_Size*Poverty/100, 2) from Demographics;
+    SELECT CHSI_County_Name, ROUND(Population_Size*Poverty/100, 2) from Demographics;
 
 > ## Challenge
 >
-> Write a query that ...
+> Write a query that returns the names of the counties with Population Size, and Numbers (not percentages) of White, 
+> Black,  Hispanic, and Asian people
 
 Filtering
 ---------
 
 Databases can also filter data – selecting only the data meeting certain
-criteria.  For example, let’s say we only want the data for Massachusetts.  We need to add a WHERE clause to our
-query:
+criteria.  For example, let’s say we only want the data for Massachusetts.  
+We need to add a WHERE clause to our query:
 
     SELECT * FROM Demographics WHERE CHSI_State_Abbr='MA';
 
@@ -95,7 +96,7 @@ Whoops! Why didn't that work? SQL uses strict logical operators for these select
 
 > ### Challenge
 >
-> Write a query that...
+> Write a query that returns the counties where Poverty is >= 12 in Mass and the surrounding states.
 
 
 Saving & Exporting queries
@@ -148,23 +149,24 @@ We could alternately use DESC to get descending order.
 
 ASC is the default.
 
-We can also sort on several fields at once.
+We can also sort on several fields at once. This is somewhat of a contrived example, but it illustrates the concept.
 
-    SELECT * FROM Demographics ORDER BY Poverty ASC, Black ASC;
+    SELECT * FROM Demographics ORDER BY Population Density ASC, Poverty ASC;
 
 > ### Challenge
 >
-> Write a query that ...
+> Write a query that outputs the counties in Mass and the surrounding states with Poverty >= 12, sorted by
+> Population_Size.
 
 
 Order of execution
 ------------------
 
 Another note for ordering. We don’t actually have to display a column to sort by
-it.  For example, let’s say we want to order the birds by their species ID, but
-we only want to see genus and species.
+it.  For example, let’s say we want to order the counties in Mass by their population, but
+we only want to see Poverty and the name of the county.
 
-    SELECT genus, species FROM species WHERE taxa = 'Bird' ORDER BY species_id ASC;
+    SELECT CHSI_County_Name, Poverty FROM Demographics WHERE CHSI_State_Abbr = 'MA' ORDER BY Population_Size ASC;
 
 We can do this because sorting occurs earlier in the computational pipeline than
 field selection.
@@ -186,9 +188,9 @@ and we often write each of them on their own line for readability.
 > ### Challenge
 >
 > Let's try to combine what we've learned so far in a single
-> query.  Using the surveys table write a query to display the three date fields,
-> species\_id, and weight in kilograms (rounded to two decimal places), for
-> individuals captured in 1999, ordered alphabetically by the species\_id.
+> query.  Using the Demographics table write a query to display 
+> counties and poverty levels nationwide with Populations over 5000,
+> Population Density over 500, sorted by the percentage of Black residents.
 
 
 

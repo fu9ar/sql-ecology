@@ -13,31 +13,31 @@ calculating combined values in groups.
 Let’s go to the surveys table and find out how many individuals there are.
 Using the wildcard simply counts the number of records (rows)
 
-    SELECT COUNT(*) FROM surveys
+    SELECT COUNT(*) FROM Demographics
 
-We can also find out how much all of those individuals weigh.
+We can also total the population counted.
 
-    SELECT COUNT(*), SUM(weight) FROM surveys
+    SELECT COUNT(*), SUM(Population_Size) FROM Demographics
 
-We can output this value in kilograms, rounded to 3 decimal
+We can output this value in millions, rounded to 3 decimal
    places:
 
-    SELECT ROUND(SUM(weight)/1000.0, 3) FROM surveys
+    SELECT ROUND(SUM(Population_Size)/1000000.0, 3) FROM Demographics
 
 There are many other aggregate functions included in SQL including
 `MAX`, `MIN`, and `AVG`.
 
 > ### Challenge
 >
-> Write query that returns: total weight, average weight, and the min and max weights for all animals caught over the duration of the survey. Can you modify it so that it outputs that for a range of weights?
+> Write query that returns: total population, average population, and the min and max populations for all counties in the US. Can you modify it so that it outputs that for a range of population sizes?
 
 
-Now, let's see how many individuals were counted in each species. We do this
+Now, let's see how many counties are in each state. We do this
 using a GROUP BY clause
 
-    SELECT species_id, COUNT(*)
-    FROM surveys
-    GROUP BY species_id
+    SELECT CHSI_State_Abbr, COUNT(*)
+    FROM Demographics
+    GROUP BY CHSI_State_Abbr
 
 GROUP BY tells SQL what field or fields we want to use to aggregate the data.
 If we want to group by multiple fields, we give GROUP BY a comma separated list.
@@ -46,11 +46,9 @@ If we want to group by multiple fields, we give GROUP BY a comma separated list.
 >
 > Write queries that return:
 >
-> 1. How many individuals were counted in each year.
-a) in total;
-b) per each species.
-> 2. Average weight of each species in each year.
-Can you modify the above queries combining them into one?
+> 1. The population of each state
+> 2. The population living in Poverty in each state
+> 3. ??
 
 
 ##### Ordering aggregated results.
@@ -66,7 +64,8 @@ captured, ordered by the count
 
 > ### Challenge
 >
->   Write a query that returns the number of each species caught in each year sorted from most often caught species to the least occurring ones within each year starting from the most recent records.
+>   Write a query that returns an ordered list of the CHSI_State_Abbr, County, 
+> and Population, ordered by the states with the highest average poverty
 
 
 

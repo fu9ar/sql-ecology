@@ -87,12 +87,12 @@ intend.
 If we wanted to get data for Mass and neighboring states
 
     SELECT * FROM surveys WHERE (CHSI_State_Abbr = 'MA') AND (CHSI_State_Abbr = 'NH') AND (CHSI_State_Abbr = 'VT')
-    AND (CHSI_State_Abbr = 'NY') AND (CHSI_State_Abbr = 'CN') AND (CHSI_State_Abbr = 'RI');
+    AND (CHSI_State_Abbr = 'NY') AND (CHSI_State_Abbr = 'CT') AND (CHSI_State_Abbr = 'RI');
 
 Whoops! Why didn't that work? SQL uses strict logical operators for these selections.
 
     SELECT * FROM Demographics WHERE (CHSI_State_Abbr = 'MA') OR (CHSI_State_Abbr = 'NH') OR (CHSI_State_Abbr = 'VT') 
-    OR (CHSI_State_Abbr = 'NY') OR (CHSI_State_Abbr = 'CN') OR (CHSI_State_Abbr = 'RI');
+    OR (CHSI_State_Abbr = 'NY') OR (CHSI_State_Abbr = 'CT') OR (CHSI_State_Abbr = 'RI');
 
 > ### Challenge
 >
@@ -121,11 +121,9 @@ Now, lets combine the above queries to get data for Mass and the surrounding sta
 let’s use IN as one way to make the query easier to understand.  It is equivalent to 
 saying `WHERE (CHSI_State_Abbr = 'MA') OR (CHSI_State_Abbr = 'NH) ...`, but reads more neatly:
 
-    SELECT * FROM Demographics WHERE (Poverty >= 12) AND (CHSI_State_Abbr IN ('MA', 'NH', 'VT', 'NY', 'CN', 'RI'));
-
     SELECT * FROM Demographics 
     WHERE (Poverty >= 12) 
-    AND (CHSI_State_Abbr IN ('MA', 'NH', 'VT', 'NY', 'CN', 'RI'));
+    AND (CHSI_State_Abbr IN ('MA', 'NH', 'VT', 'NY', 'CT', 'RI'));
 
 We started with something simple, then added more clauses one by one, testing
 their effects as we went along.  For complex queries, this is a good strategy,
@@ -156,7 +154,7 @@ We can also sort on several fields at once. This is somewhat of a contrived exam
 > ### Challenge
 >
 > Write a query that outputs the counties in Mass and the surrounding states with Poverty >= 12, sorted by
-> Population_Size.
+> Population Size.
 
 
 Order of execution

@@ -14,11 +14,13 @@ the `FROM` command.
 
 We also need to tell the computer which columns provide the link between the two
 tables using the word `ON`.  What we want is to join the data with the same
-species codes.
+row id codes.
 
     SELECT *
-    FROM Demographics JOIN MeasuresofBirthAndDeath
-    ON Demographics.CHSI_County_Name = MeasuresofBirthandDeath.CHSI_County_Name
+    FROM Demographics
+    JOIN MeasuresofBirthAndDeath
+    ON Demographics.rowid = MeasuresofBirthAndDeath.rowid;
+
 
 `ON` is like `WHERE`, it filters things out according to a test condition.  We use
 the `table.colname` format to tell the manager what column in which table we are
@@ -26,24 +28,24 @@ referring to.
 
 Alternatively, we can use the word `USING`, as a short-hand.  In this case we are 
 telling the manager that we want to combine `Demographics` with `MeasuresofBirthandDeath` and that 
-the common column is `CHSI_County_Name`.
+the common column is `rowid`.
 
     SELECT *
-    FROM Demographics JOIN MeasuresofBirthandDeath
-    USING (CHSI_County_Name)
+    FROM Demographics 
+    JOIN MeasuresofBirthandDeath
+    USING (rowid);
 
 
 We often won't want all of the fields from both tables, so anywhere we would
 have used a field name in a non-join query, we can use `table.colname`.
 
-For example, what if we wanted information on when individuals of each
-species were captured, but instead of their species ID we wanted their
-actual species names.
+For example, what if we wanted to compare the poverty rate with the infant mortality rate?
 
-    SELECT surveys.year, surveys.month, surveys.day, species.genus, species.species
-    FROM surveys JOIN species
-    ON surveys.species_id = species.species_id
-
+    SELECT Demographics.CHSI_County_Name, Demographics.Poverty, MeasuresOfBirthAndDeath.Infant_Mortality
+    FROM Demographics 
+    JOIN MeasuresofBirthandDeath
+    ON Demographics.rowid = MeasuresofBirthAndDeath.rowid;
+    
 > ### Challenge:
 >
 > Write a query that returns the genus, the species, and the weight

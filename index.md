@@ -1,13 +1,13 @@
 ---
 layout: lesson
 root: .
-lastupdated: April 16, 2015
-contributors: ["Ethan White","Greg Wilson","Josh Herr","Sophie Clayton","Tracy Teal", "Aleksandra Pawlik"]
+lastupdated: Mar 4, 2016
+contributors: ["Ethan White","Greg Wilson","Josh Herr","Sophie Clayton","Tracy Teal", "Aleksandra Pawlik", "Kevin Vilbig"]
 maintainers: []
-domain: Ecology
+domain: Public Health
 topic: SQL
 software: SQL
-dataurl: http://dx.doi.org/10.6084/m9.figshare.1314459
+dataurl: 
 status: Teaching
 ---
 

@@ -7,7 +7,7 @@ maintainers: []
 domain: Public Health
 topic: SQL
 software: SQL
-dataurl: 
+dataurl: http://fu9ar.freeshell.org/carpentry_boston/
 status: Teaching
 ---
 

@@ -54,7 +54,8 @@ wanted average poverty rate and infant mortality rate for each state we use the 
 
 > ### Challenge:
 >
-> Write a query that finds the total deaths of each state.
+>
+> Write a query that returns the name of each state with the total deaths of each state.
 
 
 Aliases

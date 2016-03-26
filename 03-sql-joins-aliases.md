@@ -83,6 +83,19 @@ The `AS` isn't technically required, so you could do
 
 but using `AS` is much clearer so it is considered good style to use it.
 
+
+    [join by CHSI_County_Name]
+    
+There is a better way to `JOIN` datasets like this one rather than trusting that they are presorted by the implicitly defined primary key, rowid. It is possible to `JOIN` using multiple columns if that is what is necessary to create a unique identifier for each table.
+
+    SELECT Demographics.CHSI_County_Name, Demographics.Poverty, MeasuresOfBirthAndDeath.Infant_Mortality
+    FROM Demographics
+    JOIN MeasuresofBirthAndDeath
+    ON (Demographics.CHSI_State_Name = MeasuresofBirthAndDeath.CHSI_State_Name) 
+    AND (Demographics.CHSI_County_Name = MeasuresofBirthAndDeath.CHSI_County_Name)
+
+
+
 > ### Challenge (optional):
 >
 

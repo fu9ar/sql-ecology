@@ -96,7 +96,7 @@ http://wwwn.cdc.gov/communityhealth
 Import
 ------
 
-1. Download the three CSV files from the [download here](insert URL here)
+1. Download the three CSV files from the [download here](http://omega.uta.edu/~kpv8956/)
 1. Start a New Database **Database -> New Database**
 2. Start the import **Database -> Import**
 3. Select the file to import

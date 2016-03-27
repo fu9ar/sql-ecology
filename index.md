@@ -7,7 +7,7 @@ maintainers: []
 domain: Public Health
 topic: SQL
 software: SQL
-dataurl: http://fu9ar.freeshell.org/carpentry_boston/
+dataurl: http://omega.uta.edu/~kpv8956/
 status: Teaching
 ---
 

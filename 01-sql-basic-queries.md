@@ -20,7 +20,7 @@ SQL is case insensitive, but it helps for readability – good style.
 If we want more information, we can just add a new column to the list of fields,
 right after SELECT:
 
-    SELECT CHSI_State_Name, CHSI_County_Name, Population_Size FROM Demographics;
+    SELECT State, County, Population_Size FROM Demographics;
 
 Or we can select all of the columns in a table using the wildcard *
 
@@ -30,12 +30,12 @@ Or we can select all of the columns in a table using the wildcard *
 
 This isn't terribly useful on this dataset, but we can output a list of distinct values from a column using the SQL Keyword, ``DISTINCT``
 
-    SELECT DISTINCT CHSI_State_Name FROM Demographics;
+    SELECT DISTINCT State FROM Demographics;
 
 If we select more than one column, then the distinct pairs of values are
 returned. Note that the Poverty measurements are percentages, not raw numbers.
 
-    SELECT DISTINCT CHSI_State_Name, Poverty FROM Demographics;
+    SELECT DISTINCT State, Poverty FROM Demographics;
     
 Here, you can look at the bottom of the SQLite Manager window, in the status bar and you should see that this returns 2167 records compared to the 3141 returned from
 
@@ -46,14 +46,14 @@ Here, you can look at the bottom of the SQLite Manager window, in the status bar
 We can also do calculations with the values in a query.
 For example, if we needed counts of the people living in Poverty in each County
 
-    SELECT CHSI_County_Name, Population_Size*Poverty/100 from Demographics;
+    SELECT County, Population_Size*Poverty/100 from Demographics;
 
 When we run the query, the expression `Population_Size*Poverty/100` is evaluated for each row
 and appended to that row, in a new column.  Expressions can use any fields, any
 arithmetic operators (+ - * /) and a variety of built-in functions (). For
 example, we could round the values to make them easier to read. While you may not need two decimal places when evaluating population demographics, I included it here to illustrate how the function arguments work.
 
-    SELECT CHSI_County_Name, ROUND(Population_Size*Poverty/100, 2) from Demographics;
+    SELECT County, ROUND(Population_Size*Poverty/100, 2) from Demographics;
 
 > ## Challenge
 >
@@ -67,7 +67,7 @@ Databases can also filter data – selecting only the data meeting certain
 criteria.  For example, let’s say we only want the data for Massachusetts.  
 We need to add a WHERE clause to our query:
 
-    SELECT * FROM Demographics WHERE CHSI_State_Abbr='MA';
+    SELECT * FROM Demographics WHERE State='TX';
 
 We can do the same thing with numbers.
 Here, we only want the data for counties with more than 20% Poverty:
@@ -75,19 +75,14 @@ Here, we only want the data for counties with more than 20% Poverty:
     SELECT * FROM Demographics WHERE Poverty >= 20;
 
 We can use more sophisticated conditions by combining tests with AND and OR.
-For example, suppose we want the data on _Dipodomys merriami_ starting in the year
-2000:
 
-    SELECT * FROM Demographics WHERE (Poverty >= 20) AND (CHSI_State_Abbr = 'MA');
+    SELECT * FROM Demographics WHERE (Poverty >= 20) AND (State = 'TX');
 
 Note that the parentheses aren’t needed, but again, they help with readability.
 They also ensure that the computer combines AND and OR in the way that we
 intend.
 
-If we wanted to get data for Mass and neighboring states
-
-    SELECT * FROM surveys WHERE (CHSI_State_Abbr = 'MA') AND (CHSI_State_Abbr = 'NH') AND (CHSI_State_Abbr = 'VT')
-    AND (CHSI_State_Abbr = 'NY') AND (CHSI_State_Abbr = 'CT') AND (CHSI_State_Abbr = 'RI');
+    SELECT * FROM Demographics WHERE (State = 'TX') AND (State = 'OK');
 
 Whoops! Why didn't that work? SQL uses strict logical operators for these selections.
 
@@ -96,7 +91,7 @@ Whoops! Why didn't that work? SQL uses strict logical operators for these select
 
 > ### Challenge
 >
-> Write a query that returns the counties where Poverty is >= 12 in Mass and the surrounding states.
+> Write a query that returns the counties where Poverty is >= 20 in TX and the surrounding states.
 
 
 Saving & Exporting queries
@@ -123,7 +118,7 @@ saying `WHERE (CHSI_State_Abbr = 'MA') OR (CHSI_State_Abbr = 'NH) ...`, but read
 
     SELECT * FROM Demographics 
     WHERE (Poverty >= 12) 
-    AND (CHSI_State_Abbr IN ('MA', 'NH', 'VT', 'NY', 'CT', 'RI'));
+    AND (CHSI_State_Abbr IN ('TX', 'NM', 'OK', 'LA'));
 
 We started with something simple, then added more clauses one by one, testing
 their effects as we went along.  For complex queries, this is a good strategy,
@@ -149,7 +144,7 @@ ASC is the default.
 
 We can also sort on several fields at once. This is somewhat of a contrived example, but it illustrates the concept.
 
-    SELECT * FROM Demographics ORDER BY Population Density ASC, Poverty ASC;
+    SELECT * FROM Demographics ORDER BY Population_Density ASC, Poverty ASC;
 
 > ### Challenge
 >
@@ -164,7 +159,7 @@ Another note for ordering. We don’t actually have to display a column to sort 
 it.  For example, let’s say we want to order the counties in Mass by their population, but
 we only want to see Poverty and the name of the county.
 
-    SELECT CHSI_County_Name, Poverty FROM Demographics WHERE CHSI_State_Abbr = 'MA' ORDER BY Population_Size ASC;
+    SELECT County, Poverty FROM Demographics WHERE State = 'TX' ORDER BY Population_Size ASC;
 
 We can do this because sorting occurs earlier in the computational pipeline than
 field selection.

@@ -35,9 +35,9 @@ There are many other aggregate functions included in SQL including
 Now, let's see how many counties are in each state. We do this
 using a GROUP BY clause
 
-    SELECT CHSI_State_Abbr, COUNT(*)
+    SELECT State, COUNT(*)
     FROM Demographics
-    GROUP BY CHSI_State_Abbr
+    GROUP BY State
 
 GROUP BY tells SQL what field or fields we want to use to aggregate the data.
 If we want to group by multiple fields, we give GROUP BY a comma separated list.
@@ -54,17 +54,16 @@ If we want to group by multiple fields, we give GROUP BY a comma separated list.
 ##### Ordering aggregated results.
 
 We can order the results of our aggregation by a specific column, including the
-aggregated column.  Let’s count the number of individuals of each species
-captured, ordered by the count
+aggregated column.  Let’s count the number of counties in each state!
 
-    SELECT species_id, COUNT(*)
-    FROM surveys
-    GROUP BY species_id
-    ORDER BY COUNT(species_id)
+    SELECT State, COUNT(*)
+    FROM Demographics
+    GROUP BY State
+    ORDER BY COUNT(State)
 
 > ### Challenge
 >
->   Write a query that returns an ordered list of the CHSI_State_Abbr, County, 
+>   Write a query that returns an ordered list of the State, County, 
 > and Population, ordered by the states with the highest average poverty
 
 

@@ -31,7 +31,7 @@ have used a field name in a non-join query, we can use `table.colname`.
 
 For example, what if we wanted to compare the poverty rate with the infant mortality rate?
 
-    SELECT Demographics.CHSI_County_Name, Demographics.Poverty, MeasuresOfBirthAndDeath.Infant_Mortality
+    SELECT Demographics.County, Demographics.Poverty, MeasuresOfBirthAndDeath.Infant_Mortality
     FROM Demographics 
     JOIN MeasuresofBirthandDeath
     ON Demographics.rowid = MeasuresofBirthAndDeath.rowid;
@@ -43,10 +43,10 @@ For example, what if we wanted to compare the poverty rate with the infant morta
 Joins can be combined with sorting, filtering, and aggregation.  So, if we
 wanted average poverty rate and infant mortality rate for each state we use the following.
 
-    SELECT Demographics.CHSI_State_Abbr, AVG(Demographics.Poverty), AVG(MeasuresofBirthandDeath.Infant_Mortality)
+    SELECT Demographics.State, AVG(Demographics.Poverty), AVG(MeasuresofBirthandDeath.Infant_Mortality)
     FROM Demographics JOIN MeasuresofBirthandDeath
     ON Demographics.rowid = MeasuresofBirthandDeath.rowid
-    GROUP BY Demographics.CHSI_State_Abbr;
+    GROUP BY Demographics.State;
 
 > ### Challenge:
 >
@@ -66,7 +66,7 @@ clearer we can use aliases to assign new names to things in the query.
 
 We can alias both table names:
 
-    SELECT D.CHSI_County_Name, D.Poverty, M.Infant_Mortality, M.Total_Births
+    SELECT D.County, D.Poverty, M.Infant_Mortality, M.Total_Births
     FROM Demographics AS D JOIN MeasuresOfBirthandDeath AS M
     ON D.rowid = M.rowid;
 
@@ -78,21 +78,20 @@ And column names:
 
 The `AS` isn't technically required, so you could do
 
-    SELECT D.CHSI_County_Name co
+    SELECT D.County co
     FROM Demographics D
 
 but using `AS` is much clearer so it is considered good style to use it.
 
-
-    [join by CHSI_County_Name]
+    [join by County]
     
-There is a better way to `JOIN` datasets like this one rather than trusting that they are presorted by the implicitly defined primary key, rowid. It is possible to `JOIN` using multiple columns if that is what is necessary to create a unique identifier for each table.
+There is a better way to `JOIN` datasets like this one rather than trusting that they are presorted by the implicitly defined primary key, rowid. It is possible to `JOIN` using multiple columns if that is what is necessary to create a unique identifier for each record.
 
-    SELECT Demographics.CHSI_County_Name, Demographics.Poverty, MeasuresOfBirthAndDeath.Infant_Mortality
+    SELECT Demographics.County, Demographics.Poverty, MeasuresOfBirthAndDeath.Infant_Mortality
     FROM Demographics
     JOIN MeasuresofBirthAndDeath
-    ON (Demographics.CHSI_State_Name = MeasuresofBirthAndDeath.CHSI_State_Name) 
-    AND (Demographics.CHSI_County_Name = MeasuresofBirthAndDeath.CHSI_County_Name)
+    ON (Demographics.State = MeasuresofBirthAndDeath.CHSI_State_Name) 
+    AND (Demographics.County = MeasuresofBirthAndDeath.CHSI_County_Name)
 
 
 

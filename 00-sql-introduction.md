@@ -96,8 +96,13 @@ http://wwwn.cdc.gov/communityhealth
 Import
 ------
 
-1. Download the three CSV files from the [download here](http://omega.uta.edu/~kpv8956/)
-1. Start a New Database **Database -> New Database**
+1. Download the three CSV files from the [download here](http://omega.uta.edu/~kpv8956/) or
+
+https://raw.githubusercontent.com/fu9ar/sql-pub_health/gh-pages/data/DEMOGRAPHICS.csv
+https://raw.githubusercontent.com/fu9ar/sql-pub_health/gh-pages/data/MEASURESOFBIRTHANDDEATH.csv
+https://raw.githubusercontent.com/fu9ar/sql-pub_health/gh-pages/data/VUNERABLEPOPSANDENVHEALTH.csv
+
+2. 1. Start a New Database **Database -> New Database**
 2. Start the import **Database -> Import**
 3. Select the file to import
 4. Give the table a name that matches the file name (Demographics, Measures of Birth and Death, Vulnerable Pops and Health), or use the default.

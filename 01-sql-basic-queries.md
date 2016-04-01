@@ -86,8 +86,7 @@ intend.
 
 Whoops! Why didn't that work? SQL uses strict logical operators for these selections.
 
-    SELECT * FROM Demographics WHERE (CHSI_State_Abbr = 'MA') OR (CHSI_State_Abbr = 'NH') OR (CHSI_State_Abbr = 'VT') 
-    OR (CHSI_State_Abbr = 'NY') OR (CHSI_State_Abbr = 'CT') OR (CHSI_State_Abbr = 'RI');
+    SELECT * FROM Demographics WHERE (State = 'TX') OR (State = 'OK');
 
 > ### Challenge
 >

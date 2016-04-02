@@ -74,9 +74,9 @@ Data files for the workshop are available here: [{{page.dataurl %}}]({{page.data
 
 or here
 
-    [DEMOGRAPHICS](https://raw.githubusercontent.com/fu9ar/sql-pub_health/gh-pages/data/DEMOGRAPHICS.csv)
-    [MEASURESOFBIRTHANDDEATH](https://raw.githubusercontent.com/fu9ar/sql-pub_health/gh-pages/data/MEASURESOFBIRTHANDDEATH.csv)
-    [VULNERABLEPOPSANDENVHEALTH](https://raw.githubusercontent.com/fu9ar/sql-pub_health/gh-pages/data/VUNERABLEPOPSANDENVHEALTH.csv)
+[DEMOGRAPHICS](https://raw.githubusercontent.com/fu9ar/sql-pub_health/gh-pages/data/DEMOGRAPHICS.csv)
+[MEASURESOFBIRTHANDDEATH](https://raw.githubusercontent.com/fu9ar/sql-pub_health/gh-pages/data/MEASURESOFBIRTHANDDEATH.csv)
+[VULNERABLEPOPSANDENVHEALTH](https://raw.githubusercontent.com/fu9ar/sql-pub_health/gh-pages/data/VUNERABLEPOPSANDENVHEALTH.csv)
 
 <br>
 

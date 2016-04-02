@@ -72,6 +72,11 @@ You can then use **Ctrl - +** to zoom just like any other web page.
 
 Data files for the workshop are available here: [{{page.dataurl %}}]({{page.dataurl %}})
 
+or here
+
+https://raw.githubusercontent.com/fu9ar/sql-pub_health/gh-pages/data/DEMOGRAPHICS.csv
+https://raw.githubusercontent.com/fu9ar/sql-pub_health/gh-pages/data/MEASURESOFBIRTHANDDEATH.csv 
+https://raw.githubusercontent.com/fu9ar/sql-pub_health/gh-pages/data/VUNERABLEPOPSANDENVHEALTH.csv
 
 <br>
 

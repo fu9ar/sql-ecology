@@ -75,9 +75,9 @@ benchmarks]).
 
 [these benchmarks]: http://sebastianraschka.com/Articles/2013_sqlite_database.html#results-and-conclusions
 
-### Wrapping it all up: Plotting in Python or R
+### Wrapping it all up: Plotting in Python
 
-Instructor note: if you 
+This pulls everything we've learned together and we can do a thing with stuff to make a plot that clearly shows a positive correlation between Poverty and Infant Mortality across the US Counties, but there are obviously some other conflating factors with such a big blob in the middle! Interesting!
 
 ```python
 import pandas as pd

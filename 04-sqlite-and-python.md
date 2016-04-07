@@ -58,7 +58,7 @@ import sqlite3
 
 # Read sqlite query results into a pandas DataFrame
 con = sqlite3.connect("chsi.sqlite")
-df = pd.read_sql_query("SELECT * from surveys", con)
+df = pd.read_sql_query("SELECT * from Demographics", con)
 
 # verify that result of SQL query is stored in the dataframe
 print(df.head())

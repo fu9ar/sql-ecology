@@ -75,6 +75,27 @@ benchmarks]).
 
 [these benchmarks]: http://sebastianraschka.com/Articles/2013_sqlite_database.html#results-and-conclusions
 
+### Wrapping it all up: Plotting in Python or R
+
+Instructor note: if you 
+
+```python
+import pandas as pd
+import sqlite3
+import matplotlib.pyplot as plt
+
+%matplotlib inline
+
+query = "SELECT D.County, D.Poverty, M.Infant_Mortality \
+                       FROM Demographics AS D \
+                       JOIN MeasuresOfBirthAndDeath AS M ON \
+                       D.State = M.State AND D.County = M.County;"
+
+con = sqlite3.connect("chsi.sqlite")
+df = pd.read_sql_query(query, con)
+
+df.plot(kind='scatter', x='Poverty', y='Infant_Mortality')
+```
 
 ## Challenges
 
